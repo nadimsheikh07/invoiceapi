@@ -1,0 +1,42 @@
+[
+    {
+        "category_id": 1,
+        "name": "Software Development",
+        "price": "300"
+    },
+    {
+        "category_id": 1,
+        "name": "Web Application Development",
+        "price": "300"
+    },
+    {
+        "category_id": 1,
+        "name": "Mobile Application Development",
+        "price": "300"
+    },
+    {
+        "category_id": 2,
+        "name": "Web Designing",
+        "price": "300"
+    },
+    {
+        "category_id": 2,
+        "name": "Graphics Designing",
+        "price": "300"
+    },
+    {
+        "category_id": 3,
+        "name": "SEO",
+        "price": "300"
+    },
+    {
+        "category_id": 3,
+        "name": "SMO",
+        "price": "300"
+    },
+    {
+        "category_id": 3,
+        "name": "SMM",
+        "price": "300"
+    }
+]

@@ -1,7 +1,7 @@
 [
     {
         "code": "name",
-        "value": "nadim sheikh"
+        "value": "Nadim Sheikh"
     },
     {
         "code": "email",
@@ -10,5 +10,13 @@
     {
         "code": "contact",
         "value": "7737033665"
+    },
+    {
+        "code": "pan",
+        "value": "FXXPS9146A"
+    },
+    {
+        "code": "address",
+        "value": "247, chattriwala chowk, behind saifi school, near ashwini market"
     }
 ]
