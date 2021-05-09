@@ -19,6 +19,7 @@ class ItemController extends Controller
     public function index()
     {
         $query = Item::query();
+        $query->with('category');
         $columns = ['name', 'price', 'track_inventory', 'status',];
 
         if (request('search')) {
@@ -105,7 +106,8 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        return response()->data($item);
+        $data=Item::with('category')->where('id',$item->id)->first();
+        return response()->data($data);
     }
 
     /**

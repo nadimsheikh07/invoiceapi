@@ -18,6 +18,11 @@ class Item extends Model
         'status',
     ];
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     public function getCreatedAtAttribute($date)
     {
         return Carbon::parse($date)->tz(env('APP_TIMEZONE', 'UTC'))->format('d-m-Y h:i A');

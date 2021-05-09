@@ -1,13 +1,18 @@
 <?php
 
-
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PermissionGroupController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -71,5 +76,11 @@ Route::group([
     Route::get('settings/update', [SettingController::class, 'index']);
     Route::put('settings/update', [SettingController::class, 'update']);
 
+    Route::apiResource('categories', CategoryController::class);
+    Route::apiResource('companies', CompanyController::class);
+    Route::apiResource('customers', CustomerController::class);
+    Route::apiResource('inventories', InventoryController::class);
     Route::apiResource('items', ItemController::class);
+    Route::apiResource('purchases', PurchaseController::class);
+    Route::apiResource('sales', SaleController::class);
 });
