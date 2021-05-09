@@ -18,6 +18,7 @@ class CreateInventoriesTable extends Migration
             $table->foreignId('item_id')->constrained('items')->onDelete('restrict')->onUpdate('cascade');
             $table->enum('type', ['in', 'out']);
             $table->integer('quantity');
+            $table->text('detail');
             $table->decimal('price', 8, 2)->default(0);
             $table->timestamps();
         });
