@@ -12,8 +12,17 @@ class Sale extends Model
 
     protected $fillable = [
         'customer_id',
+        'company_id',
+        'total_tax',
+        'total_discount',
+        'total',
         'comments',
     ];
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
 
     public function customer()
     {
