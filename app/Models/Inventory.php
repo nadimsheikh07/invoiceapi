@@ -18,6 +18,11 @@ class Inventory extends Model
         'detail',
     ];
 
+    public function item()
+    {
+        return $this->belongsTo(Item::class);
+    }
+
     public function getCreatedAtAttribute($date)
     {
         return Carbon::parse($date)->tz(env('APP_TIMEZONE', 'UTC'))->format('d-m-Y h:i A');

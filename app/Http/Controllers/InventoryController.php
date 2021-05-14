@@ -19,6 +19,7 @@ class InventoryController extends Controller
     public function index()
     {
         $query = Inventory::query();
+        $query->with('item');
         $columns = ['type', 'quantity', 'price', 'detail'];
 
         if (request('search')) {
@@ -83,13 +84,15 @@ class InventoryController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => [
+            'item_id' => [
                 'required',
             ],
-            'email' => [
+            'quantity' => [
                 'required',
-                Rule::unique(Inventory::class)
             ],
+            'price' => [
+                'required',
+            ]
         ]);
         if ($validator->fails()) {
             return response()->validation($validator->errors(), __('response.errors.validation'));
@@ -121,13 +124,15 @@ class InventoryController extends Controller
     public function update(Request $request, Inventory $inventory)
     {
         $validator = Validator::make($request->all(), [
-            'name' => [
+            'item_id' => [
                 'required',
             ],
-            'email' => [
+            'quantity' => [
                 'required',
-                Rule::unique(Inventory::class)->ignore($inventory->id)
             ],
+            'price' => [
+                'required',
+            ]
         ]);
         if ($validator->fails()) {
             return response()->validation($validator->errors(), __('response.errors.validation'));

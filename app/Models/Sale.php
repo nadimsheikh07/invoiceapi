@@ -11,8 +11,14 @@ class Sale extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'customer_id',
+        'comments',
     ];
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 
     public function getCreatedAtAttribute($date)
     {

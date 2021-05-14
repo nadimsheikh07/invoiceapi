@@ -15,6 +15,11 @@ class Purchase extends Model
         'comments',
     ];
 
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
     public function getCreatedAtAttribute($date)
     {
         return Carbon::parse($date)->tz(env('APP_TIMEZONE', 'UTC'))->format('d-m-Y h:i A');

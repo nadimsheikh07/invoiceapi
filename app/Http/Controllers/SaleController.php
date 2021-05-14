@@ -18,6 +18,7 @@ class SaleController extends Controller
     public function index()
     {
         $query = Sale::query();
+        $query->with('customer');
         $columns = ['comments'];
 
         if (request('search')) {

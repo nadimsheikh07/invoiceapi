@@ -19,6 +19,7 @@ class PurchaseController extends Controller
     public function index()
     {
         $query = Purchase::query();
+        $query->with('customer');
         $columns = ['comments'];
 
         if (request('search')) {
