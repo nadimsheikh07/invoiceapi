@@ -19,7 +19,7 @@ class SaleController extends Controller
     public function index()
     {
         $query = Sale::query();
-        $query->with('customer');
+        $query->with(['customer', 'company']);
         $columns = ['comments'];
 
         if (request('search')) {
@@ -131,7 +131,8 @@ class SaleController extends Controller
      */
     public function show(Sale $sale)
     {
-        return response()->data($sale);
+        $query = Sale::with(['items'])->where('id', $sale->id)->first();
+        return response()->json($query);
     }
 
     /**
