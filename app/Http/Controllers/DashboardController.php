@@ -17,31 +17,31 @@ class DashboardController extends Controller
         $data = [];
 
         $data[] = [
-            'title' => 'Total Users',
+            'title' => __('dashboard.total_users'),
             'total' => User::count(),
             'icon' => 'person',
             'url' => 'users'
         ];
         $data[] = [
-            'title' => 'Total Categories',
+            'title' => __('dashboard.total_categories'),
             'total' => Category::count(),
             'icon' => 'category',
             'url' => 'categories'
         ];
         $data[] = [
-            'title' => 'Total Items',
+            'title' => __('dashboard.total_items'),
             'total' => Item::count(),
             'icon' => 'donut_small',
             'url' => 'items'
         ];
         $data[] = [
-            'title' => 'Total Purchase',
+            'title' => __('dashboard.total_purchase'),
             'total' => Purchase::count(),
             'icon' => 'inventory',
             'url' => 'purchases'
         ];
         $data[] = [
-            'title' => 'Total Sales',
+            'title' => __('dashboard.total_sales'),
             'total' => Sale::count(),
             'icon' => 'receipt',
             'url' => 'sales'
