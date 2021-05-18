@@ -17,9 +17,9 @@ class CreateSalesTable extends Migration
             $table->id();
             $table->foreignId('customer_id')->constrained('customers')->onDelete('restrict')->onUpdate('cascade');
             $table->foreignId('company_id')->constrained('companies')->onDelete('restrict')->onUpdate('cascade');
-            $table->decimal('total_tax', 8, 2)->default(0);
-            $table->decimal('total_discount', 8, 2)->default(0);
-            $table->decimal('total', 8, 2)->default(0);
+            $table->decimal('total_tax', 8, 2)->default(0)->nullable();
+            $table->decimal('total_discount', 8, 2)->default(0)->nullable();
+            $table->decimal('total', 8, 2)->default(0)->nullable();
             $table->text('comments')->nullable();
             $table->timestamps();
         });
