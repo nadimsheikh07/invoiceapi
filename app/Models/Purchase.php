@@ -19,6 +19,25 @@ class Purchase extends Model
         'comments',
     ];
 
+    protected $appends = ['company_name','customer_name'];
+
+    public function getCompanyNameAttribute()
+    {
+        $name = '';
+        if ($this->company) {
+            $name = $this->company->name;
+        }
+        return $name;
+    }
+    public function getCustomerNameAttribute()
+    {
+        $name = '';
+        if ($this->customer) {
+            $name = $this->customer->name;
+        }
+        return $name;
+    }
+
     public function items()
     {
         return $this->hasMany(PurchaseItem::class);

@@ -17,4 +17,20 @@ class PurchaseItem extends Model
         'quantity',
         'price',
     ];
+
+    protected $appends = ['item_name'];
+
+    public function getItemNameAttribute()
+    {
+        $name = '';
+        if ($this->item) {
+            $name = $this->item->name;
+        }
+        return $name;
+    }
+
+    public function item()
+    {
+        return $this->belongsTo(Item::class);
+    }
 }
