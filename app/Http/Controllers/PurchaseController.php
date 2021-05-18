@@ -92,9 +92,28 @@ class PurchaseController extends Controller
             return response()->validation($validator->errors(), __('response.errors.validation'));
         }
         $input = $request->all();
-        $purchase = Purchase::create($input);
 
         $items = json_decode($input['items'], true);
+
+        $total = 0;
+
+        if ($items) {
+            foreach ($items as $value) {
+                $total += ($value['quantity'] * $value['price']);
+            }
+        }
+        if ($input['total_tax']) {
+            $total += $input['total_tax'];
+        }
+        if ($input['total_discount']) {
+            $total -= $input['total_discount'];
+        }
+
+        $input['total'] = $total;
+
+
+        $purchase = Purchase::create($input);
+
         $purchase->items()->delete();
         $purchase->items()->createMany($items);
 

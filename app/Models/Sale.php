@@ -19,6 +19,11 @@ class Sale extends Model
         'comments',
     ];
 
+    public function items()
+    {
+        return $this->hasMany(SaleItem::class);
+    }
+
     public function company()
     {
         return $this->belongsTo(Company::class);

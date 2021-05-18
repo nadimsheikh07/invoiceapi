@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+
 class SaleController extends Controller
 {
     /**
@@ -92,7 +93,32 @@ class SaleController extends Controller
             return response()->validation($validator->errors(), __('response.errors.validation'));
         }
         $input = $request->all();
-        Sale::create($input);
+
+        $items = json_decode($input['items'], true);
+
+        $total = 0;
+
+        if ($items) {
+            foreach ($items as $value) {
+                $total += ($value['quantity'] * $value['price']);
+            }
+        }
+
+        if ($input['total_tax']) {
+            $total += $input['total_tax'];
+        }
+        if ($input['total_discount']) {
+            $total -= $input['total_discount'];
+        }
+
+        $input['total'] = $total;
+
+
+        $sale = Sale::create($input);
+
+        $sale->items()->delete();
+        $sale->items()->createMany($items);
+
         $message = __('response.messages.success', ['name' => __('module.sale.title')]);
         return response()->success($message);
     }
@@ -126,7 +152,33 @@ class SaleController extends Controller
             return response()->validation($validator->errors(), __('response.errors.validation'));
         }
         $input = $request->all();
+
+        $items = json_decode($input['items'], true);
+
+        $total = 0;
+
+        if ($items) {
+            foreach ($items as $value) {
+                $total += ($value['quantity'] * $value['price']);
+            }
+        }
+
+        if ($input['total_tax']) {
+            $total += $input['total_tax'];
+        }
+        if ($input['total_discount']) {
+            $total -= $input['total_discount'];
+        }
+
+        $input['total'] = $total;
+
+
         $sale->update($input);
+
+        $sale->items()->delete();
+        $sale->items()->createMany($items);
+
+
         $message = __('response.messages.update', ['name' => __('module.sale.title')]);
         return response()->success($message);
     }
