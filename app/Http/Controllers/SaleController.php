@@ -7,8 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
-
+use niklasravnsborg\LaravelPdf\Facades\Pdf as LaravelPdf;
 class SaleController extends Controller
 {
     /**
@@ -195,5 +194,24 @@ class SaleController extends Controller
         $sale->delete();
         $message = __('response.messages.delete', ['name' => __('module.sale.title')]);
         return response()->success($message);
+    }
+
+
+    public function showPdf(Sale $sale)
+    {
+        $query = Sale::with(['customer', 'company', 'items'])->where('id', $sale->id)->first();
+        // return $query;
+
+        $pdf = LaravelPdf::loadView("pdf/sales", $query, [], [
+            'mode'             => 'utf-8',
+            'format'           => 'A4',
+            'author'           => '',
+            'subject'          => '',
+            'keywords'         => '',
+            'creator'          => '',
+            'display_mode'     => 'fullpage',
+        ]);
+
+        return $pdf->stream('document.pdf');
     }
 }

@@ -18,8 +18,7 @@ class SaleItem extends Model
         'price',
     ];
 
-
-    protected $appends = ['item_name'];
+    protected $appends = ['item_name', 'total'];
 
     public function getItemNameAttribute()
     {
@@ -28,6 +27,14 @@ class SaleItem extends Model
             $name = $this->item->name;
         }
         return $name;
+    }
+    public function getTotalAttribute()
+    {
+        $value = 0;
+        if ($this->quantity && $this->price) {
+            $value = ($this->quantity * $this->price);
+        }
+        return $value;
     }
 
     public function item()

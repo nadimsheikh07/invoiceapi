@@ -62,6 +62,12 @@ Route::group([
     Route::post('image', [FileController::class, 'image']);
 });
 
+Route::group([
+    'prefix' => 'pdf'
+], function () {
+    Route::get('sales/{sale}', [SaleController::class, 'showPdf']);
+});
+
 Route::get('download', [FileController::class, 'download']);
 
 Route::group([
