@@ -20,14 +20,14 @@ class CreateSalesTable extends Migration
             $table->decimal('total_tax', 8, 2)->default(0);
             $table->decimal('total_discount', 8, 2)->default(0);
             $table->decimal('total', 8, 2)->default(0);
-            $table->text('comments');
+            $table->text('comments')->nullable();
             $table->timestamps();
         });
 
         Schema::create('sale_items', function (Blueprint $table) {
             $table->foreignId('sale_id')->constrained('sales')->onDelete('restrict')->onUpdate('cascade');
             $table->foreignId('item_id')->constrained('items')->onDelete('restrict')->onUpdate('cascade');
-            $table->integer('quantity');
+            $table->integer('quantity')->default(0);
             $table->decimal('price', 8, 2)->default(0);
         });
     }

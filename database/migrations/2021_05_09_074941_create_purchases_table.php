@@ -20,14 +20,14 @@ class CreatePurchasesTable extends Migration
             $table->decimal('total_tax', 8, 2)->default(0);
             $table->decimal('total_discount', 8, 2)->default(0);
             $table->decimal('total', 8, 2)->default(0);
-            $table->text('comments');
+            $table->text('comments')->nullable();
             $table->timestamps();
         });
 
         Schema::create('purchase_items', function (Blueprint $table) {
             $table->foreignId('purchase_id')->constrained('purchases')->onDelete('restrict')->onUpdate('cascade');
             $table->foreignId('item_id')->constrained('items')->onDelete('restrict')->onUpdate('cascade');
-            $table->integer('quantity');
+            $table->integer('quantity')->default(0);
             $table->decimal('price', 8, 2)->default(0);
         });
     }
