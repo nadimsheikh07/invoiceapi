@@ -37,7 +37,7 @@ class DashboardController extends Controller
         $data[] = [
             'title' => __('dashboard.total_purchase'),
             'total' => Purchase::count(),
-            'icon' => 'inventory',
+            'icon' => 'description',
             'url' => 'purchases'
         ];
         $data[] = [
