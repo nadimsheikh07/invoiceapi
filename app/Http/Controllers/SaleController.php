@@ -131,7 +131,7 @@ class SaleController extends Controller
      */
     public function show(Sale $sale)
     {
-        $query = Sale::with(['items'])->where('id', $sale->id)->first();
+        $query = Sale::with(['customer', 'company', 'items'])->where('id', $sale->id)->first();
         return response()->json($query);
     }
 

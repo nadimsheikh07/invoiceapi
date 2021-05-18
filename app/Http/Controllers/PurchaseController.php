@@ -130,7 +130,7 @@ class PurchaseController extends Controller
      */
     public function show(Purchase $purchase)
     {
-        $query = Purchase::with(['items'])->where('id', $purchase->id)->first();
+        $query = Purchase::with(['customer', 'company', 'items'])->where('id', $purchase->id)->first();
         return response()->json($query);
     }
 
