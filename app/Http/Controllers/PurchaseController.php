@@ -19,7 +19,7 @@ class PurchaseController extends Controller
     public function index()
     {
         $query = Purchase::query();
-        $query->with('customer');
+        $query->with(['customer', 'company']);
         $columns = ['comments'];
 
         if (request('search')) {
@@ -92,7 +92,13 @@ class PurchaseController extends Controller
             return response()->validation($validator->errors(), __('response.errors.validation'));
         }
         $input = $request->all();
-        Purchase::create($input);
+        $purchase = Purchase::create($input);
+
+        $items = json_decode($input['items'], true);
+        $purchase->items()->delete();
+        $purchase->items()->createMany($items);
+
+
         $message = __('response.messages.success', ['name' => __('module.purchase.title')]);
         return response()->success($message);
     }
@@ -105,7 +111,8 @@ class PurchaseController extends Controller
      */
     public function show(Purchase $purchase)
     {
-        return response()->data($purchase);
+        $query = Purchase::with(['items'])->where('id', $purchase->id)->first();
+        return response()->json($query);
     }
 
     /**
@@ -126,7 +133,29 @@ class PurchaseController extends Controller
             return response()->validation($validator->errors(), __('response.errors.validation'));
         }
         $input = $request->all();
+        $items = json_decode($input['items'], true);
+
+        $total = 0;
+
+        if ($items) {
+            foreach ($items as $value) {
+                $total += ($value['quantity'] * $value['price']);
+            }
+        }
+
+        if ($input['total_tax']) {
+            $total += $input['total_tax'];
+        }
+        if ($input['total_discount']) {
+            $total -= $input['total_discount'];
+        }
+
+        $input['total'] = $total;
         $purchase->update($input);
+
+        $purchase->items()->delete();
+        $purchase->items()->createMany($items);
+
         $message = __('response.messages.update', ['name' => __('module.purchase.title')]);
         return response()->success($message);
     }

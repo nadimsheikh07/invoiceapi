@@ -19,6 +19,11 @@ class Purchase extends Model
         'comments',
     ];
 
+    public function items()
+    {
+        return $this->hasMany(PurchaseItem::class);
+    }
+
     public function company()
     {
         return $this->belongsTo(Company::class);
