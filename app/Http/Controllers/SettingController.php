@@ -114,15 +114,6 @@ class SettingController extends Controller
             'name' => $input['name'],
             'email' => $input['email'],
             'contact' => $input['contact'],
-            'distributor_role' => $input['distributor_role'],
-            'promotor_role' => $input['promotor_role'],
-            'franchise_role' => $input['franchise_role'],
-            'distributor_commission' => $input['distributor_commission'],
-            'distributor_fixed_commission' => $input['distributor_fixed_commission'],
-            'level_1_commission' => $input['level_1_commission'],
-            'level_2_commission' => $input['level_2_commission'],
-            'level_3_commission' => $input['level_3_commission'],
-            'level_4_commission' => $input['level_4_commission'],
         ];
         foreach ($data as $key => $value) {
             $insertData = [
