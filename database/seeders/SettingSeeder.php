@@ -15,7 +15,7 @@ class SettingSeeder extends Seeder
      */
     public function run()
     {
-        $jsonString = file_get_contents(base_path('resources/json/setting.json'));
+        $jsonString = file_get_contents(base_path('public/storage/backup/setting.json'));
         $data = json_decode($jsonString, true);
         foreach ($data as  $value) {
             $allowed = ['code', 'value'];

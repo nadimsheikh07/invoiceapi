@@ -15,7 +15,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        $jsonString = file_get_contents(base_path('resources/json/categories.json'));
+        $jsonString = file_get_contents(base_path('public/storage/backup/categories.json'));
         $data = json_decode($jsonString, true);
         foreach ($data as  $value) {
             $allowed = ['name'];
