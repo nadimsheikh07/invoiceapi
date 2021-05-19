@@ -29,6 +29,7 @@ class CreatePurchasesTable extends Migration
             $table->foreignId('item_id')->constrained('items')->onDelete('restrict')->onUpdate('cascade');
             $table->integer('quantity')->default(0);
             $table->decimal('price', 8, 2)->default(0);
+            $table->decimal('total', 8, 2)->default(0);
         });
     }
 

@@ -16,6 +16,7 @@ class PurchaseItem extends Model
         'item_id',
         'quantity',
         'price',
+        'total',
     ];
 
     protected $appends = ['item_name'];
@@ -27,6 +28,11 @@ class PurchaseItem extends Model
             $name = $this->item->name;
         }
         return $name;
+    }
+
+    public function setTotalAttribute()
+    {
+        $this->attributes['total'] = ((float)$this->price * (float)$this->quantity);
     }
 
     public function item()
