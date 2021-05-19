@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>#{{ $id }}</title>
 </head>
 
 <body style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #000000;">
@@ -107,6 +107,11 @@
 
 
     <table style="width: 100%;margin-top:100px">
+        <tr>
+            <td align="right">
+                <img src="{{ $sign }}" height="75px"/>
+            </td>
+        </tr>
         <tr>
             <td align="right">{{ $company['name'] }}</td>
         </tr>

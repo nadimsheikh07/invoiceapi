@@ -200,6 +200,7 @@ class SaleController extends Controller
     public function showPdf(Sale $sale)
     {
         $query = Sale::with(['customer', 'company', 'items'])->where('id', $sale->id)->first();
+        $query['sign']=public_path('/image/sign.png');
         // return $query;
 
         $pdf = LaravelPdf::loadView("pdf/sales", $query, [], [
