@@ -20,6 +20,7 @@ class CreateSalesTable extends Migration
             $table->decimal('total_tax', 8, 2)->default(0)->nullable();
             $table->decimal('total_discount', 8, 2)->default(0)->nullable();
             $table->decimal('total', 8, 2)->default(0)->nullable();
+            $table->boolean('lock')->default(false);
             $table->text('comments')->nullable();
             $table->timestamps();
         });
