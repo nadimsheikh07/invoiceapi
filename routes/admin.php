@@ -82,6 +82,8 @@ Route::group([
     Route::get('settings/update', [SettingController::class, 'index']);
     Route::put('settings/update', [SettingController::class, 'update']);
 
+    Route::get('inventories/update_inventory', [InventoryController::class, 'updateInventory']);
+
     Route::apiResource('categories', CategoryController::class);
     Route::apiResource('companies', CompanyController::class);
     Route::apiResource('customers', CustomerController::class);

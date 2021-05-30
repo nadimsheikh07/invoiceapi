@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Inventory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
+
+;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 
 class InventoryController extends Controller
 {
@@ -153,6 +155,13 @@ class InventoryController extends Controller
     {
         $inventory->delete();
         $message = __('response.messages.delete', ['name' => __('module.inventory.title')]);
+        return response()->success($message);
+    }
+
+    public function updateInventory()
+    {
+        Artisan::call('inventory:manage');
+        $message = __('response.messages.update', ['name' => __('module.inventory.title')]);
         return response()->success($message);
     }
 }
