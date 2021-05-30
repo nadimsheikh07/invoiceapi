@@ -41,7 +41,7 @@ class InventoryManage extends Command
     public function handle()
     {
         // purchase inventory
-        $purchases = Purchase::with(['items'])->where('lock', false)->get();
+        $purchases = Purchase::with(['items'])->where('is_lock', false)->get();
         if ($purchases) {
             foreach ($purchases as $purchase) {
                 if ($purchase->items) {
@@ -56,13 +56,13 @@ class InventoryManage extends Command
                     }
                 }
                 $purchase->update([
-                    'lock' => true
+                    'is_lock' => true
                 ]);
             }
         }
 
         // sales inventory
-        $sales = Sale::with(['items'])->where('lock', false)->get();
+        $sales = Sale::with(['items'])->where('is_lock', false)->get();
         if ($sales) {
             foreach ($sales as $sale) {
                 if ($sale->items) {
@@ -78,7 +78,7 @@ class InventoryManage extends Command
                 }
 
                 $sale->update([
-                    'lock' => true
+                    'is_lock' => true
                 ]);
             }
         }

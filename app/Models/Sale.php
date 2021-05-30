@@ -17,6 +17,7 @@ class Sale extends Model
         'total_discount',
         'total',
         'comments',
+        'is_lock'
     ];
 
     protected $appends = ['company_name','customer_name'];
